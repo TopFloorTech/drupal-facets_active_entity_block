@@ -1,0 +1,7 @@
+{
+    "name": "drupal/facets_active_entity_block",
+    "description": "Facets Active Entity Block",
+    "type": "drupal-module",
+    "license": "GPL-2.0+",
+    "require": {}
+}
