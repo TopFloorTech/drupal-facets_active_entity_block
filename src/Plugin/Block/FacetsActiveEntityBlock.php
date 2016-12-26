@@ -77,14 +77,20 @@ class FacetsActiveEntityBlock extends FacetsActiveEntityBlockBase {
       }
     }
 
+    $result = NULL;
+
     if (!is_null($entityId)) {
       $entity = \Drupal::entityTypeManager()->getStorage($entityType)->load($entityId);
       $viewMode = isset($config['view_mode']) ? $config['view_mode'] : 'full';
 
-      $view_builder = \Drupal::entityTypeManager()->getViewBuilder($entity->getEntityTypeId());
+      if (!is_null($entity)) {
+        $view_builder = \Drupal::entityTypeManager()->getViewBuilder($entity->getEntityTypeId());
 
-      $result = $view_builder->view($entity, $viewMode);
-    } else {
+        $result = $view_builder->view($entity, $viewMode);
+      }
+    }
+
+    if (is_null($result)) {
       $result = [
         '#type' => 'markup',
         '#markup' => '',
