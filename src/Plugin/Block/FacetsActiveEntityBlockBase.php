@@ -10,6 +10,7 @@ use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\facets\FacetInterface;
 use Drupal\facets\FacetSource\SearchApiFacetSourceInterface;
+use Drupal\facets\Plugin\facets\facet_source\SearchApiDisplay;
 use Drupal\facets\Processor\PreQueryProcessorInterface;
 use Drupal\facets\Processor\ProcessorInterface;
 use Drupal\facets\Processor\ProcessorPluginManager;
@@ -142,7 +143,7 @@ abstract class FacetsActiveEntityBlockBase extends BlockBase implements BlockPlu
     $source = $facet->getFacetSource();
 
     // Support multiple entity types when using Search API.
-    if ($source instanceof SearchApiFacetSourceInterface) {
+    if ($source instanceof SearchApiDisplay) {
       $data_definition = $source->getIndex()
         ->getField($facet->getFieldIdentifier())->getDataDefinition();
 
